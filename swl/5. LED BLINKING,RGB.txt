@@ -1,0 +1,50 @@
+#define GREEN_PIN 2   // Green LED connected to digital pin 2
+#define YELLOW_PIN 3  // Yellow LED connected to digital pin 3
+#define RED_PIN 4     // Red LED connected to digital pin 4
+
+void setup() {
+  // Initialize Serial Monitor
+  Serial.begin(9600);
+  Serial.println("Enter 'b' to blink green, 'g' to turn on green, 'y' to turn on yellow, 'r' to turn on red");
+
+  // Set LED pins as output
+  pinMode(GREEN_PIN, OUTPUT);
+  pinMode(YELLOW_PIN, OUTPUT);
+  pinMode(RED_PIN, OUTPUT);
+}
+
+void loop() {
+  // Check if data is available on Serial Monitor
+  if (Serial.available() > 0) {
+    // Read the input character
+    char command = Serial.read();
+    
+    // Turn off all LEDs initially to reset state
+    digitalWrite(GREEN_PIN, LOW);
+    digitalWrite(YELLOW_PIN, LOW);
+    digitalWrite(RED_PIN, LOW);
+
+    // Perform action based on input character
+    if (command == 'b') {
+      // Blink green LED 3 times
+      for (int i = 0; i < 3; i++) {
+        digitalWrite(GREEN_PIN, HIGH);
+        delay(500);
+        digitalWrite(GREEN_PIN, LOW);
+        delay(500);
+      }
+    }
+    else if (command == 'g') {
+      // Turn on green LED
+      digitalWrite(GREEN_PIN, HIGH);
+    }
+    else if (command == 'y') {
+      // Turn on yellow LED
+      digitalWrite(YELLOW_PIN, HIGH);
+    }
+    else if (command == 'r') {
+      // Turn on red LED
+      digitalWrite(RED_PIN, HIGH);
+    }
+  }
+}

@@ -1,0 +1,21 @@
+TEMPRATURE SENSOR.8TH.TINKERCAD. (FOR DHT11 -> INSTALL DHT11 BY ADAFRUIT->EXAMPLES->DHT11->TESTxx)
+
+#define TEMP_SENSOR_PIN A0  // LM35 output connected to A0
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(TEMP_SENSOR_PIN, INPUT);
+}
+
+void loop() {
+  // Read the analog voltage from LM35
+  int sensorValue = analogRead(TEMP_SENSOR_PIN);
+  
+  // Convert the analog value to temperature in Celsius
+  float temperature = sensorValue * (5.0 / 1023.0) * 100;
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println("°C");
+  delay(2000);
+}

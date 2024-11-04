@@ -1,0 +1,31 @@
+#define TEMP_SENSOR_PIN A0  // LM35 output connected to A0
+#define BUZZER_PIN 8        // Buzzer connected to digital pin 8
+#define TEMP_THRESHOLD 30   // Temperature threshold in Celsius
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(BUZZER_PIN, OUTPUT);
+}
+
+void loop() {
+  // Read the analog voltage from LM35
+  int sensorValue = analogRead(TEMP_SENSOR_PIN);
+  
+  // Convert the analog value to temperature in Celsius
+  float temperature = sensorValue * (5.0 / 1023.0) * 100;
+
+  Serial.print("Temperature: ");
+  Serial.print(temperature);
+  Serial.println("°C");
+
+  // Check if temperature exceeds threshold
+  if (temperature > TEMP_THRESHOLD) {
+    digitalWrite(BUZZER_PIN, HIGH);  // Turn on the buzzer
+    delay(1000);                     // Buzzer on for 1 second
+    digitalWrite(BUZZER_PIN, LOW);    // Turn off the buzzer
+  } else {
+    digitalWrite(BUZZER_PIN, LOW);    // Ensure buzzer is off if below threshold
+  }
+
+  delay(2000);  // Wait 2 seconds before next reading
+}

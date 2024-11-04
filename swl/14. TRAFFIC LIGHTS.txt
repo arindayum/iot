@@ -1,0 +1,33 @@
+TRAFFIC LIGHTS.14TH.
+
+
+
+const int redLED = 8;    // Red LED pin
+const int yellowLED = 9; // Yellow LED pin
+const int greenLED = 10; // Green LED pin
+
+void setup() {
+  pinMode(redLED, OUTPUT);
+  pinMode(yellowLED, OUTPUT);
+  pinMode(greenLED, OUTPUT);
+}
+
+void loop() {
+  // Red light for 5 seconds
+  digitalWrite(redLED, HIGH);    // Turn on red LED
+  digitalWrite(yellowLED, LOW);   // Ensure yellow LED is off
+  digitalWrite(greenLED, LOW);    // Ensure green LED is off
+  delay(5000);                    // Wait for 5 seconds
+
+  // Green light for 5 seconds
+  digitalWrite(redLED, LOW);      // Ensure red LED is off
+  digitalWrite(yellowLED, LOW);   // Ensure yellow LED is off
+  digitalWrite(greenLED, HIGH);   // Turn on green LED
+  delay(5000);                    // Wait for 5 seconds
+
+  // Yellow light for 2 seconds
+  digitalWrite(redLED, LOW);      // Ensure red LED is off
+  digitalWrite(yellowLED, HIGH);  // Turn on yellow LED
+  digitalWrite(greenLED, LOW);    // Ensure green LED is off
+  delay(2000);                    // Wait for 2 seconds
+}

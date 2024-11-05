@@ -1,0 +1,22 @@
+int led=13;
+const int treshold = 100 ;
+int sensorReading = 0 ;
+int ledState = LOW ;
+	void setup()
+    {
+      pinMode (led,OUTPUT);
+      Serial.begin(9600);
+    }
+void loop()
+{
+  sensorReading = analogRead(A0); 
+  if (sensorReading >= treshold)
+  {
+    ledState = !ledState;
+    digitalWrite(led,ledState);
+    Serial.println("Knock!");
+  }
+  delay(1000);
+}
+
+    
